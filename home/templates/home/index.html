@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+    <header>
+        <h1>Welcome to My School</h1>
+    </header>
+    <div class="container">
+        <table border="1" cellpadding="5" cellspacing="0" width="50%">
+            <tr>
+                <th>S No</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Can Vote?</th>
+            </tr>
+            {% for peo in people %}
+                <tr>
+                    <td>{{ forloop.counter }}</td> <!-- Display the row number -->
+                    <td>{{ peo.Name }}</t
+                        d>       <!-- Display the person's name -->
+                    <td>{{ peo.Age }}</td>       <!-- Display the person's age -->
+                    <td>
+                        {% if peo.Age >= 18 %}    <!-- Check if the age is 18 or greater -->
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+      <p> 
+        {{tt |truncatechars:45}}
+    </p>
+    </div>
+    <p>
+    <p>
+        <a href=/contact/> Contacts</a>
+    </p>
+    <p>
+        <a href=/about/> About</a>
+    </p>
+</body>
+</html>
+<{% endblock %}

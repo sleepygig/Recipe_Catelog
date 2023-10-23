@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Form cha rha front end se backend data send 
+krna hai -->
+<div class="container mt-5">
+
+    <form class="col-6 mx-auto card" style="max-width: 300px; margin: 0 auto;" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Add Recipe</h2>
+
+        <div class="mb-3">
+            <label for="recipesName" class="form-label" style="font-weight: bold;">Recipes Name</label>
+            <input type="text" name="recipe_name" class="form-control" required style="width: 100%;">
+        </div>
+        <div class="mb-3">
+            <label for="recipesDescription" class="form-label" style="font-weight: bold;">Recipes Description</label>
+            <textarea type="text" name="recipe_description" class="form-control" required style="width: 100%;"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="uploadFile" class="form-label" style="font-weight: bold;">Upload File</label>
+            <input type="file" name="recipe_Image" class="form-control" required style="width: 100%;">
+        </div>
+        <button type="submit" class="btn btn-success">Add Recipe</button> 
+        <!-- It sents datas as HTTP post request to the
+        server -->
+    </form>
+</div>
+
+<table border="0" cellpadding="5" cellspacing="20" width="80%">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Recipe Name</th>
+            <th scope="col">Recipe Description</th>
+            <th scope="col">Image</th>
+            <th scope="col">Action 1</th>
+            <th scope="col">Action 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for rec in recipes %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ rec.recipe_name }}</td>
+            <td>{{ rec.recipe_description }}</td>
+            <td><img src="/media/{{ rec.recipe_Image }}" style="max-width: 100px; max-height: 100px;"></td>
+            <td>
+              <a href="/delete_recipe/{{rec.id}}" class="btn btn-danger">Delete</a>
+            <!--Dyanamic URL to delete a particluar entry-->
+          </td>
+          <td>
+            <a href="/update_recipe/{{rec.id}}" class="btn btn-primary">Update</a>
+
+          <!--Dyanamic URL to delete a particluar entry-->
+        </td>
+        {% endfor %}
+    </tbody>
+</table>
+{% comment %} {{ recipes }} {% endcomment %}
+{% endblock %}

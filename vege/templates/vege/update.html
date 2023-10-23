@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Form cha rha front end se backend data send 
+krna hai -->
+<div class="container mt-5">
+
+    <form class="col-6 mx-auto card" style="max-width: 300px; margin: 0 auto;" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Update Recipe</h2>
+
+        <div class="mb-3">
+            <label for="recipesName" class="form-label" style="font-weight: bold;">Recipes Name</label>
+            <input type="text" value ="{{Rec.recipe_name}}"name="recipe_name" class="form-control" required style="width: 100%;">
+        </div>
+        <div class="mb-3">
+            <label for="recipesDescription" class="form-label" style="font-weight: bold;">Recipes Description</label>
+            <textarea type="text" name="recipe_description" class="form-control" required style="width: 100%; height: 300px;">{{ Rec.recipe_description }}</textarea>
+
+        </div>
+        <button type="submit" class="btn btn-success">Update</button> 
+        <!-- It sents datas as HTTP post request to the
+        server -->
+    </form>
+</div>
+
+
+{% comment %} {{ recipes }} {% endcomment %}
+{% endblock %}
