@@ -4,6 +4,8 @@ import os
 # abhhi model ko import krugo toh put the
 # fetched data in db
 from vege.models import *
+def abcd(request):
+    return HttpResponse("Welcome !!")
 def recipes(request):
     if request.method == 'POST':
         data = request.POST
